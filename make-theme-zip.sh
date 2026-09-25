@@ -8,6 +8,9 @@
 
 set -euo pipefail
 
+# Run from the project root no matter where the script was invoked from.
+cd "$(cd "$(dirname "$0")" && pwd)"
+
 OUT="${1:-brutal-buy-theme.zip}"
 DIRS=(assets config layout locales sections snippets templates)
 

@@ -52,11 +52,23 @@ real cart → checkout works.
 Shopify wants the theme folders at the *root* of the zip, not wrapped in a folder.
 `original-static/` (your untouched originals) must be excluded. A helper is included:
 
+**Windows — PowerShell or cmd:**
+```powershell
+.\make-theme-zip.cmd
+```
+
+**Git Bash / macOS / Linux:**
 ```bash
 ./make-theme-zip.sh          # writes brutal-buy-theme.zip
 ```
 
-Or manually:
+> **Why the `.cmd` wrapper?** PowerShell and cmd cannot execute a `.sh` file
+directly. Typing `./make-theme-zip.sh` there does nothing and prints no error.
+> Git for Windows only puts `C:\Program Files\Git\cmd` on your PATH, and that
+> folder has no `bash.exe`, so `bash script.sh` won't work from PowerShell either.
+> The `.cmd` wrapper locates `C:\Program Files\Git\bin\bash.exe` itself.
+
+Or manually, from Git Bash:
 
 ```bash
 zip -r brutal-buy-theme.zip \
@@ -214,11 +226,20 @@ connected branch with no unrelated folders mixed in**. This repo also holds
 version control, but none of which may be on the branch Shopify reads.
 
 So `main` keeps everything, and a separate `shopify-theme` branch holds only the
-theme folders. `push-theme-branch.sh` builds it for you:
+theme folders. The helper builds it for you:
 
+**Windows — PowerShell or cmd:**
+```powershell
+.\push-theme-branch.cmd
+```
+
+**Git Bash / macOS / Linux:**
 ```bash
 ./push-theme-branch.sh          # branch defaults to shopify-theme
 ```
+
+> Running `./push-theme-branch.sh` in PowerShell silently does nothing — see the
+> note under **Build the zip** above for why. Always use the `.cmd` wrapper there.
 
 It builds the commit through a throwaway git index, so it never switches branches
 and never touches your working tree — there is nothing to lose if it fails.

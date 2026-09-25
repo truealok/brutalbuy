@@ -6,6 +6,9 @@ brutal-buy-theme.zip
 .shopify/
 node_modules/
 
+# Agent / tooling metadata (local only — has no business in a public repo)
+.freebuff/
+
 # Editors / OS
 .DS_Store
 Thumbs.db

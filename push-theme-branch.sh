@@ -19,6 +19,9 @@
 
 set -euo pipefail
 
+# Run from the project root no matter where the script was invoked from.
+cd "$(cd "$(dirname "$0")" && pwd)"
+
 BRANCH="${1:-shopify-theme}"
 DIRS=(assets config layout locales sections snippets templates)
 
