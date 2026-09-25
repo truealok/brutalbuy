@@ -1,0 +1,30 @@
+{%- comment -%}
+  Newsletter block. The form is wired to the newsletter section of Shopify's
+  customer form when the store has it enabled; otherwise it shows the demo toast.
+
+  For a real integration, replace the form action with
+  {% raw %}{% form 'customer' %}{% endraw %} and add a
+  <input type="hidden" name="contact[tags]" value="newsletter"> field.
+{%- endcomment -%}
+{%- capture bb_settings -%}
+{
+  "heading": {{ section.settings.heading | json }},
+  "subheading": {{ section.settings.subheading | json }},
+  "submit": {{ section.settings.submit_label | json }},
+  "success": {{ section.settings.success_message | json }}
+}
+{%- endcapture -%}
+<section class="section" style="padding-top:0" id="newsletter" data-bb-settings="{{ bb_settings | escape }}"></section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Join the Brutal List ⚡" },
+    { "type": "inline_richtext", "id": "subheading", "label": "Subheading", "default": "Early drops, training tips and members-only pricing. No spam — just gear." },
+    { "type": "text", "id": "submit_label", "label": "Button label", "default": "Subscribe" },
+    { "type": "text", "id": "success_message", "label": "Success message", "default": "You are on the list! 🎉" }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

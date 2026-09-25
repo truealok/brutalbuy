@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Returns & Cancellation — Brutal Buy</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container page-body">
+    <div style="max-width:640px;margin-inline:auto;text-align:center">
+      <h1 style="font-size:clamp(30px,4vw,44px);font-weight:900">Withdrawal request form</h1>
+      <p style="color:var(--text-dim);margin:12px 0 26px">Log in to return or cancel your order faster in the
+        <a href="account.html#orders" style="color:var(--accent-strong);text-decoration:underline">Order page</a>, or fill in the form below.</p>
+    </div>
+
+    <div class="contact-card" style="max-width:640px;margin-inline:auto">
+      <form class="form-grid" onsubmit="event.preventDefault();this.reset();BB.toast('Request submitted — check your email 📬')">
+        <div class="field"><input placeholder="Order ID *" required></div>
+        <div class="field"><input type="email" placeholder="Email *" required></div>
+        <div>
+          <div class="opt-label" style="margin-top:0">Request type</div>
+          <div class="radio-row">
+            <label class="radio"><input type="radio" name="rtype" checked> Return</label>
+            <label class="radio"><input type="radio" name="rtype"> Cancel</label>
+          </div>
+        </div>
+        <div class="field"><textarea rows="4" placeholder="Description * (what happened, which items)" required></textarea></div>
+        <div class="withdraw-note">
+          💡 Items must be unused with original tags. Refunds are processed within 5 business days of pickup.
+          Bulk and custom-printed orders are non-returnable unless defective.
+        </div>
+        <div style="display:flex;justify-content:flex-end">
+          <button class="btn btn-primary">Return & Cancel here 📦</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

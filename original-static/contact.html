@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Brutal Buy</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Talk to Us</h1>
+      <p>Order help, bulk quotes, or just gear talk — we answer fast.</p>
+    </div>
+  </section>
+
+  <main class="container page-body">
+    <div class="contact-layout">
+      <div class="contact-card">
+        <h3 style="font-weight:900;margin-bottom:14px">Reach us</h3>
+        <div class="c-line">📞 +1 (555) 014-8899</div>
+        <div class="c-line">✉️ support@brutalbuy.com</div>
+        <div class="c-line">💬 Live chat · 9am–9pm daily</div>
+        <div class="c-line">📍 Unit 14, Grand Sports Complex, TX</div>
+        <div style="border-top:1px solid var(--line);margin-top:16px;padding-top:16px;font-size:13px;color:var(--muted)">
+          Average first response: <b style="color:var(--accent-strong)">under 2 hours</b>
+        </div>
+      </div>
+      <div class="contact-card">
+        <form class="form-grid" onsubmit="event.preventDefault();this.reset();BB.toast('Message sent — we will reply soon! ✉️')">
+          <div class="form-row">
+            <div class="field"><input placeholder="Your name" required></div>
+            <div class="field"><input type="email" placeholder="Email" required></div>
+          </div>
+          <div class="field">
+            <select><option>Order support</option><option>Bulk / B2B enquiry</option><option>Product question</option><option>Returns</option></select>
+          </div>
+          <div class="field"><input placeholder="Order ID (optional)"></div>
+          <div class="field"><textarea rows="5" placeholder="How can we help?" required></textarea></div>
+          <button class="btn btn-primary" style="justify-self:start">Send message →</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

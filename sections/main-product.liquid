@@ -1,0 +1,155 @@
+{%- comment -%}
+  Real Shopify product page — same .pdp layout as the demo PDP, but rendered
+  from live product data with native add-to-cart so checkout actually works.
+{%- endcomment -%}
+<div class="container">
+  <nav class="breadcrumb" style="padding-top:22px">
+    <a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a> <span>›</span>
+    {%- if collection -%}
+      <a href="{{ collection.url }}">{{ collection.title }}</a> <span>›</span>
+    {%- endif -%}
+    <span style="color:var(--text)">{{ product.title }}</span>
+  </nav>
+
+  <div class="pdp">
+    <div class="pdp-gallery">
+      <div class="pdp-main-img" id="pdpMain" style="background-image:url('{{ product.featured_image | image_url: width: 1000 }}')"></div>
+      <div class="pdp-thumbs" id="pdpThumbs">
+        {%- for image in product.images limit: 6 -%}
+          <button
+            type="button"
+            data-img="{{ image | image_url: width: 1000 }}"
+            style="background-image:url('{{ image | image_url: width: 300 }}')"
+            class="{% if forloop.first %}is-active{% endif %}"
+            aria-label="View image {{ forloop.index }}"
+          ></button>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="pdp-info">
+      <span class="p-cat">
+        {%- if product.vendor != blank -%}{{ product.vendor }}{% endif -%}
+        {%- if product.type != blank %} • {{ product.type }}{% endif -%}
+      </span>
+      <h1>{{ product.title }}</h1>
+
+      <div class="pdp-rating">
+        <span class="stars">★★★★★</span>
+        4.5 · {{ product.metafields.reviews.rating_count.value | default: 12 }} reviews
+      </div>
+
+      <div class="pdp-price" id="bbPrice">
+        <span class="now">{{ product.price | money }}</span>
+        {%- if product.compare_at_price > product.price -%}
+          <span class="was">{{ product.compare_at_price | money }}</span>
+          {%- assign saving = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+          <span class="save">Save {{ saving }}%</span>
+        {%- endif -%}
+      </div>
+
+      <div class="pdp-desc">
+        {%- if product.description != blank -%}
+          {{ product.description }}
+        {%- else -%}
+          Built by {{ product.vendor }} for players who demand match-day performance at every level.
+        {%- endif -%}
+      </div>
+
+      {%- form 'product', product, id: 'bbProductForm', novalidate: 'novalidate', data-bb-ajax-cart: '' -%}
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <div class="opt-label">{{ option.name }}</div>
+            <div class="opt-row">
+              {%- for value in option.values -%}
+                <button
+                  type="button"
+                  class="opt {% if option.selected_value == value %}is-active{% endif %}"
+                  data-option-position="{{ option.position }}"
+                  data-value="{{ value | escape }}"
+                >{{ value }}</button>
+              {%- endfor -%}
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        <select name="id" id="bbVariantId" class="select" style="width:100%;margin-bottom:14px" aria-label="{{ 'general.products.add_to_cart' | t }}">
+          {%- for variant in product.variants -%}
+            <option
+              value="{{ variant.id }}"
+              data-option1="{{ variant.option1 | escape }}"
+              data-option2="{{ variant.option2 | escape }}"
+              data-option3="{{ variant.option3 | escape }}"
+              data-price="{{ variant.price | money }}"
+              data-compare="{{ variant.compare_at_price | default: 0 }}"
+              {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+              {% unless variant.available %}disabled{% endunless %}
+            >{{ variant.title }} — {{ variant.price | money }}{% unless variant.available %} (Sold out){% endunless %}</option>
+          {%- endfor -%}
+        </select>
+
+        <div class="pdp-buy">
+          <div class="qty-lg">
+            <button type="button" id="qMinus">−</button>
+            <b id="qVal">1</b>
+            <button type="button" id="qPlus">+</button>
+          </div>
+          <input type="hidden" name="quantity" id="qInput" value="1">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="bbAddToCart"
+            style="flex:1"
+            {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+          >
+            {%- if product.selected_or_first_available_variant.available -%}
+              {{ 'general.products.add_to_cart' | t }} — <span id="bbBtnPrice">{{ product.selected_or_first_available_variant.price | money }}</span>
+            {%- else -%}
+              {{ 'general.products.sold_out' | t }}
+            {%- endif -%}
+          </button>
+        </div>
+      {%- endform -%}
+
+      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-ghost" onclick="BB.toast('Saved to wishlist ♡')">♡ {{ 'general.products.wishlist' | t }}</button>
+        <a class="btn btn-ghost" href="/pages/withdrawal">↩ {{ 'general.products.return_policy' | t }}</a>
+      </div>
+
+      <ul class="pdp-meta">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg> Free shipping over $75 · 2–5 day delivery</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 12l4-4M3 12l4 4" transform="rotate(90 3 12)"/></svg> 30-day no-questions returns</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg> 2-year pro-gear warranty</li>
+      </ul>
+    </div>
+  </div>
+
+  {%- assign related = product.collections.first -%}
+  {%- if related and related.products.size > 1 -%}
+    <section class="section related">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">{{ 'general.products.related' | t }}</h2>
+          <p class="section-sub">More from {{ related.title }}</p>
+        </div>
+        <a class="section-link" href="{{ related.url }}">View all →</a>
+      </div>
+      <div class="product-grid">
+        {%- for item in related.products limit: 8 -%}
+          {%- unless item.id == product.id -%}
+            {% render 'product-card', product: item %}
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    </section>
+  {%- endif -%}
+</div>
+
+{%- comment -%} bb-shopify.js is loaded by layout/theme.liquid for the product template. {%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Product page",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,26 @@
+{%- comment -%}
+  Masonry gallery. The 12 captioned tiles are built by bb-home.js using the
+  "gallery" image pool in bb-data.js.
+{%- endcomment -%}
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+        <p class="section-sub">{{ section.settings.subheading }}</p>
+      </div>
+    </div>
+    <div class="masonry" id="gallery"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram gallery",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Brutal Buy in Action" },
+    { "type": "inline_richtext", "id": "subheading", "label": "Subheading", "default": "Tag @brutalbuy to get featured." }
+  ],
+  "presets": [{ "name": "Instagram gallery" }]
+}
+{% endschema %}

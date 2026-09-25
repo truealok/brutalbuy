@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brands — Brutal Buy</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Our Brands</h1>
+      <p>Eight brutal labels. One standard: gear that survives the season.</p>
+    </div>
+  </section>
+
+  <main class="container page-body">
+    <div class="brand-grid" id="brandGrid"></div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById("brandGrid").innerHTML = BB.brands.map((b, i) => `
+      <a class="brand-card reveal" data-delay="${(i % 4) + 1}" href="catalog.html?brand=${b.id}">
+        <div class="b-logo">${b.name}</div>
+        <p>${b.blurb}</p>
+        <span class="section-link" style="margin-top:12px;display:inline-flex">Shop ${b.name} →</span>
+      </a>`).join("");
+    BB.bindReveals();
+  </script>
+</body>
+</html>

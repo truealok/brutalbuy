@@ -1,0 +1,26 @@
+{%- comment -%}
+  Video banner. The play button is decorative in the demo — wire it to a real
+  video embed in bb-home.js if you want it to open something.
+{%- endcomment -%}
+{%- capture bb_settings -%}
+{
+  "heading": {{ section.settings.heading | json }},
+  "subheading": {{ section.settings.subheading | json }},
+  "buttonLabel": {{ section.settings.button_label | json }}
+}
+{%- endcapture -%}
+<section class="section" id="videoBanner" data-bb-settings="{{ bb_settings | escape }}">
+  <div class="container" style="display:contents"></div>
+</section>
+
+{% schema %}
+{
+  "name": "Video banner",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Here to Help. <em>Plays Hard.</em>" },
+    { "type": "inline_richtext", "id": "subheading", "label": "Subheading", "default": "Watch how pros train with Brutal Buy gear" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Play video" }
+  ],
+  "presets": [{ "name": "Video banner" }]
+}
+{% endschema %}

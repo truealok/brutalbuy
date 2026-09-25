@@ -1,0 +1,108 @@
+{
+  "sections": {
+    "hero": {
+      "type": "bb-hero",
+      "settings": {}
+    },
+    "trust_bar": {
+      "type": "bb-trust-bar",
+      "settings": {}
+    },
+    "sports_carousel": {
+      "type": "bb-sports-carousel",
+      "settings": {
+        "heading": "Explore Your Sport Style",
+        "subheading": "13 sports. Thousands of products. One brutal marketplace."
+      }
+    },
+    "product_tabs": {
+      "type": "bb-product-tabs",
+      "settings": {
+        "heading": "Gear Up",
+        "subheading": "Handpicked by athletes, sorted by hype.",
+        "link_label": "Browse full catalog"
+      }
+    },
+    "deal_countdown": {
+      "type": "bb-deal-countdown",
+      "settings": {
+        "tag": "Deal of the Week",
+        "heading": "Pro Kit — Up to 45% Off",
+        "subheading": "Match-grade gear bundles for cricket, football and court sports. When it's gone, it's gone.",
+        "cta_primary_label": "Shop the deal",
+        "cta_secondary_label": "View bats"
+      }
+    },
+    "gear_mosaic": {
+      "type": "bb-gear-mosaic",
+      "settings": {
+        "heading": "Shop by Sport Gear",
+        "subheading": "Every category, one click deep."
+      }
+    },
+    "gallery": {
+      "type": "bb-gallery",
+      "settings": {
+        "heading": "Brutal Buy in Action",
+        "subheading": "Tag @brutalbuy to get featured."
+      }
+    },
+    "gear_types": {
+      "type": "bb-gear-types",
+      "settings": {
+        "heading": "Shop by Gear Type",
+        "subheading": "Footwear to bags — pick your category."
+      }
+    },
+    "crowd_favorites": {
+      "type": "bb-crowd-favorites",
+      "settings": {
+        "heading": "Crowd Favorites",
+        "subheading": "What everyone's buying right now.",
+        "link_label": "See best sellers"
+      }
+    },
+    "marquee": {
+      "type": "bb-marquee",
+      "settings": {
+        "item_1": "Free Shipping Over $75",
+        "item_2": "30-Day Returns",
+        "item_3": "Pro Quality",
+        "item_4": "Team & Bulk Orders",
+        "item_5": "2-Year Warranty",
+        "item_6": "Secure Checkout"
+      }
+    },
+    "video_banner": {
+      "type": "bb-video-banner",
+      "settings": {
+        "heading": "Here to Help. <em>Plays Hard.</em>",
+        "subheading": "Watch how pros train with Brutal Buy gear",
+        "button_label": "Play video"
+      }
+    },
+    "newsletter": {
+      "type": "bb-newsletter",
+      "settings": {
+        "heading": "Join the Brutal List ⚡",
+        "subheading": "Early drops, training tips and members-only pricing. No spam — just gear.",
+        "submit_label": "Subscribe",
+        "success_message": "You are on the list! 🎉"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust_bar",
+    "sports_carousel",
+    "product_tabs",
+    "deal_countdown",
+    "gear_mosaic",
+    "gallery",
+    "gear_types",
+    "crowd_favorites",
+    "marquee",
+    "video_banner",
+    "newsletter"
+  ]
+}

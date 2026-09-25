@@ -1,0 +1,125 @@
+{
+  "sections": {
+    "announcement_bar": {
+      "name": "Announcement bar",
+      "settings": {
+        "message_1": { "label": "Message 1" },
+        "message_2": { "label": "Message 2" },
+        "message_3": { "label": "Message 3" },
+        "rotation_seconds": { "label": "Rotation speed", "info": "Seconds between messages." }
+      }
+    },
+    "header": {
+      "name": "Header",
+      "settings": {
+        "sticky": { "label": "Sticky header" },
+        "show_store_locator": { "label": "Show store locator" },
+        "show_search": { "label": "Show search" },
+        "show_account": { "label": "Show account" },
+        "show_cart": { "label": "Show cart" },
+        "show_theme_toggle": { "label": "Show dark / light toggle" }
+      }
+    },
+    "footer": {
+      "name": "Footer",
+      "settings": {
+        "description": { "label": "Store description" },
+        "phone": { "label": "Phone" },
+        "email": { "label": "Email" },
+        "address": { "label": "Address" },
+        "copyright": { "label": "Copyright line" }
+      }
+    },
+    "bb_hero": {
+      "name": "Hero slider",
+      "settings": {
+        "heading": { "label": "Heading" }
+      }
+    },
+    "bb_trust_bar": {
+      "name": "Trust bar",
+      "settings": {
+        "heading": { "label": "Heading" }
+      }
+    },
+    "bb_sports_carousel": {
+      "name": "Sports carousel",
+      "settings": {
+        "heading": { "label": "Heading" },
+        "subheading": { "label": "Subheading" }
+      }
+    },
+    "bb_product_tabs": {
+      "name": "Tabbed products",
+      "settings": {
+        "heading": { "label": "Heading" },
+        "subheading": { "label": "Subheading" }
+      }
+    },
+    "bb_deal_countdown": {
+      "name": "Deal countdown",
+      "settings": {
+        "heading": { "label": "Heading" },
+        "subheading": { "label": "Subheading" },
+        "tag": { "label": "Tag" },
+        "cta_primary_label": { "label": "Primary button label" },
+        "cta_secondary_label": { "label": "Secondary button label" }
+      }
+    },
+    "bb_gear_mosaic": {
+      "name": "Gear mosaic",
+      "settings": {
+        "heading": { "label": "Heading" },
+        "subheading": { "label": "Subheading" }
+      }
+    },
+    "bb_gallery": {
+      "name": "Instagram gallery",
+      "settings": {
+        "heading": { "label": "Heading" },
+        "subheading": { "label": "Subheading" }
+      }
+    },
+    "bb_gear_types": {
+      "name": "Gear types",
+      "settings": {
+        "heading": { "label": "Heading" },
+        "subheading": { "label": "Subheading" }
+      }
+    },
+    "bb_crowd_favorites": {
+      "name": "Crowd favorites",
+      "settings": {
+        "heading": { "label": "Heading" },
+        "subheading": { "label": "Subheading" },
+        "link_label": { "label": "Link label" }
+      }
+    },
+    "bb_marquee": {
+      "name": "Marquee",
+      "settings": {
+        "item_1": { "label": "Item 1" },
+        "item_2": { "label": "Item 2" },
+        "item_3": { "label": "Item 3" },
+        "item_4": { "label": "Item 4" },
+        "item_5": { "label": "Item 5" },
+        "item_6": { "label": "Item 6" }
+      }
+    },
+    "bb_video_banner": {
+      "name": "Video banner",
+      "settings": {
+        "heading": { "label": "Heading" },
+        "subheading": { "label": "Subheading" },
+        "button_label": { "label": "Button label" }
+      }
+    },
+    "bb_newsletter": {
+      "name": "Newsletter",
+      "settings": {
+        "heading": { "label": "Heading" },
+        "subheading": { "label": "Subheading" }
+      }
+    }
+  }
+}

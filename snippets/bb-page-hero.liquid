@@ -1,0 +1,10 @@
+{%- comment -%}
+  Shared page hero banner.
+  Usage: {% render 'bb-page-hero', heading: section.settings.heading, sub: section.settings.subheading %}
+{%- endcomment -%}
+<section class="page-hero">
+  <div class="container">
+    <h1>{{ heading }}</h1>
+    <p>{{ sub }}</p>
+  </div>
+</section>

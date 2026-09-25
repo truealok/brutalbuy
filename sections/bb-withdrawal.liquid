@@ -1,0 +1,43 @@
+{%- comment -%}
+  Withdrawal / return request form. The form is a demo (shows the original toast);
+  swap it for a real form or app endpoint when you're ready. See README.
+{%- endcomment -%}
+<div class="container page-body">
+  <div style="max-width:640px;margin-inline:auto;text-align:center">
+    <h1 style="font-size:clamp(30px,4vw,44px);font-weight:900">{{ section.settings.heading }}</h1>
+    <p style="color:var(--text-dim);margin:12px 0 26px">
+      Log in to return or cancel your order faster in the
+      <a href="{{ routes.account_url }}#orders" style="color:var(--accent-strong);text-decoration:underline">Order page</a>, or fill in the form below.
+    </p>
+  </div>
+
+  <div class="contact-card" style="max-width:640px;margin-inline:auto">
+    <form class="form-grid" data-demo-toast="{{ section.settings.form_success | escape }}">
+      <div class="field"><input placeholder="Order ID *" required></div>
+      <div class="field"><input type="email" placeholder="Email *" required></div>
+      <div>
+        <div class="opt-label" style="margin-top:0">Request type</div>
+        <div class="radio-row">
+          <label class="radio"><input type="radio" name="rtype" checked> Return</label>
+          <label class="radio"><input type="radio" name="rtype"> Cancel</label>
+        </div>
+      </div>
+      <div class="field"><textarea rows="4" placeholder="Description * (what happened, which items)" required></textarea></div>
+      <div class="withdraw-note">{{ section.settings.note }}</div>
+      <div style="display:flex;justify-content:flex-end">
+        <button class="btn btn-primary">Return & Cancel here 📦</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Withdrawal page",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Withdrawal request form" },
+    { "type": "textarea", "id": "note", "label": "Policy note", "default": "💡 Items must be unused with original tags. Refunds are processed within 5 business days of pickup. Bulk and custom-printed orders are non-returnable unless defective." },
+    { "type": "text", "id": "form_success", "label": "Success message", "default": "Request submitted — check your email 📬" }
+  ]
+}
+{% endschema %}

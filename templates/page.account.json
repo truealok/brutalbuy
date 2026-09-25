@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "bb-account",
+      "settings": {
+        "orders_heading": "Order history",
+        "profile_heading": "Profile",
+        "wishlist_heading": "Wishlist",
+        "addresses_heading": "Addresses",
+        "returns_label": "Returns & Cancellation"
+      }
+    }
+  },
+  "order": ["main"]
+}

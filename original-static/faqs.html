@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQs — Brutal Buy</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Frequently Asked Questions</h1>
+      <p>Everything about orders, shipping, returns and gear.</p>
+    </div>
+  </section>
+
+  <main class="container page-body">
+    <div style="max-width:760px;margin-inline:auto" id="faqList"></div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const faqs = [
+      ["How fast is shipping?", "Orders over $75 ship free and arrive in 2–5 business days. Smaller orders ship for a flat $9. Every parcel is tracked from our warehouse to your door."],
+      ["What is your return policy?", "30 days, no questions asked. Start a return or cancellation from the Withdrawal page with your Order ID and email — refunds hit your original payment method within 5 business days of pickup."],
+      ["Do you price match?", "Yes. Send us the competitor link via Contact and we'll match any identical in-stock product from an authorized seller."],
+      ["Can I order for my team or academy?", "Absolutely — that's our B2B desk. Bulk pricing starts at 10 units, with custom jersey printing and logo embroidery available. Request a quote on the B2B page."],
+      ["How do I choose the right cricket bat?", "Filter by willow grade under Cricket → Bats. English willow for match play, Kashmir for practice and value. Every bat page lists weight range and handle type."],
+      ["Are your products genuine?", "100%. We source directly from brand factories and authorized distributors. Every item carries the 2-year Brutal Buy warranty."],
+      ["Do you ship internationally?", "We currently ship across the US and Canada, with EU and India launch coming this year. Join the newsletter for launch alerts."],
+      ["How do I track my order?", "Open Account → Orders and click any order to see live tracking, or use the link in your shipping confirmation email."]
+    ];
+    document.getElementById("faqList").innerHTML = faqs.map(([q, a], i) => `
+      <div class="faq-item reveal" data-delay="${(i % 4) + 1}">
+        <button class="faq-q">${q} <span class="chev">＋</span></button>
+        <div class="faq-a"><p>${a}</p></div>
+      </div>`).join("");
+    document.querySelectorAll(".faq-q").forEach(b =>
+      b.addEventListener("click", () => b.closest(".faq-item").classList.toggle("open")));
+    BB.bindReveals();
+  </script>
+</body>
+</html>

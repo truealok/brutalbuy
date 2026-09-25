@@ -1,0 +1,59 @@
+{%- comment -%}
+  Real Shopify search results. The demo search drawer in bb-main.js searches the
+  generated catalog; this page searches your actual products.
+{%- endcomment -%}
+<div class="container page-body">
+  <div style="max-width:640px;margin:0 auto 26px">
+    <form action="{{ routes.search_url }}" method="get" class="search-field" style="display:flex;gap:10px">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" style="flex:1">
+      <input type="hidden" name="type" value="product">
+      <button class="btn btn-primary" type="submit">{{ 'general.search.submit' | t }}</button>
+    </form>
+  </div>
+
+  {%- if search.performed -%}
+    {%- if search.results_count > 0 -%}
+      <h1 style="font-size:clamp(24px,3vw,34px);font-weight:900;margin-bottom:20px">
+        {{ 'general.search.results_with_count' | t: count: search.results_count, terms: search.terms }}
+      </h1>
+      {%- paginate search.results by 12 -%}
+        <div class="product-grid cols-3">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {% render 'product-card', product: item %}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {%- if paginate.pages > 1 -%}
+          <div class="pagination">
+            {%- if paginate.previous -%}<a class="page-btn" href="{{ paginate.previous.url }}">‹</a>{%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a class="page-btn" href="{{ part.url }}">{{ part.title }}</a>
+              {%- else -%}
+                <span class="page-btn {% if part.title == paginate.current_page %}is-active{% endif %}">{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}<a class="page-btn" href="{{ paginate.next.url }}">›</a>{%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endpaginate -%}
+    {%- else -%}
+      <div class="cart-empty" style="padding:70px 0">
+        <h2 style="font-weight:900;margin-bottom:8px">{{ 'general.search.no_results' | t }}</h2>
+        <a class="btn btn-primary" href="{{ routes.all_products_collection_url }}" style="margin-top:18px">{{ 'general.cart.continue_shopping' | t }}</a>
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    <div class="cart-empty" style="padding:70px 0">
+      <h2 style="font-weight:900;margin-bottom:8px">{{ 'general.search.placeholder' | t }}</h2>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Search page",
+  "settings": []
+}
+{% endschema %}

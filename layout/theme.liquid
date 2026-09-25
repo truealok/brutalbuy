@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" data-theme="{{ settings.default_color_scheme | default: 'dark' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="{% if settings.default_color_scheme == 'light' %}#F2E9DC{% else %}#0F130F{% endif %}">
+
+  <title>
+    {{ page_title }}{% if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="icon" type="image/svg+xml" href="{{ 'logo.svg' | asset_url }}">
+
+  {{ content_for_header }}
+
+  <link rel="stylesheet" href="{{ 'styles.css' | asset_url }}">
+
+  {%- comment -%}
+    Runtime config: asset URLs and every internal route the ported JS needs.
+    Keeping these in Liquid means no hardcoded /assets/ or *.html paths in JS.
+  {%- endcomment -%}
+  <script>
+    window.BB_CONFIG = {
+      shop: {{ shop.name | json }},
+      currencySymbol: {{ cart.currency.symbol | json }},
+      routes: {
+        home: {{ routes.root_url | json }},
+        catalog: "/pages/catalog",
+        product: "/pages/product",
+        cart: "/pages/cart",
+        account: "/pages/account",
+        brands: "/pages/brands",
+        b2b: "/pages/b2b",
+        about: "/pages/about",
+        contact: "/pages/contact",
+        faqs: "/pages/faqs",
+        withdrawal: "/pages/withdrawal",
+        search: {{ routes.search_url | json }},
+        collection: "/collections",
+        shopifyCart: {{ routes.cart_url | json }},
+        shopifyAccount: {{ routes.account_url | json }},
+        shopifyLogin: {{ routes.account_login_url | json }},
+        addToCart: {{ routes.cart_add_url | json }},
+        cartJs: "/cart.js",
+        checkout: "/checkout"
+      },
+      assets: {
+        logoDark: {{ 'logo-dark.svg' | asset_url | json }},
+        logoLight: {{ 'logo.svg' | asset_url | json }}
+      },
+      moneyFormat: {{ shop.money_format | json }},
+      cartItemCount: {{ cart.item_count | default: 0 }}
+    };
+  </script>
+
+  <script src="{{ 'bb-data.js' | asset_url }}" defer></script>
+  <script src="{{ 'bb-main.js' | asset_url }}" defer></script>
+
+  {%- comment -%} Homepage sections only. {%- endcomment -%}
+  {%- if template == 'index' -%}
+    <script src="{{ 'bb-home.js' | asset_url }}" defer></script>
+  {%- endif -%}
+
+  {%- comment -%}
+    Shopify integration layer — only on the templates that talk to the real
+    cart (native add-to-cart forms, variant picker, badge sync).
+  {%- endcomment -%}
+  {%- assign bb_real_templates = 'product,collection,cart,search' | split: ',' -%}
+  {%- if bb_real_templates contains template -%}
+    <script src="{{ 'bb-shopify.js' | asset_url }}" defer></script>
+  {%- endif -%}
+</head>
+
+<body class="{% if template contains 'page.' %}page-body-wrap{% endif %}">
+  {%- comment -%} The overlay / drawer shell is appended by bb-main.js so the markup stays identical to the original site. {%- endcomment -%}
+
+  {% section 'announcement-bar' %}
+  {% section 'header' %}
+
+  <main id="MainContent" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  <script src="{{ 'bb-pages.js' | asset_url }}" defer></script>
+</body>
+</html>

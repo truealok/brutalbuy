@@ -1,0 +1,35 @@
+{% render 'bb-page-hero', heading: section.settings.heading, sub: section.settings.subheading %}
+
+<div class="container page-body">
+  <div class="prose">
+    {{ section.settings.body }}
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px">
+      <div class="contact-card" style="text-align:center"><b style="font-size:30px;color:var(--accent-strong)">{{ section.settings.stat_1_value }}</b><br><small style="color:var(--muted)">{{ section.settings.stat_1_label }}</small></div>
+      <div class="contact-card" style="text-align:center"><b style="font-size:30px;color:var(--accent-strong)">{{ section.settings.stat_2_value }}</b><br><small style="color:var(--muted)">{{ section.settings.stat_2_label }}</small></div>
+      <div class="contact-card" style="text-align:center"><b style="font-size:30px;color:var(--accent-strong)">{{ section.settings.stat_3_value }}</b><br><small style="color:var(--muted)">{{ section.settings.stat_3_label }}</small></div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About page",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "We're Brutal About Gear" },
+    { "type": "textarea", "id": "subheading", "label": "Intro paragraph", "default": "Brutal Buy started in a college dorm with one cricket bat and a grudge against overpriced equipment. Today we stock 13 sports and thousands of products — at prices that don't need a second thought." },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<h2>Our promise</h2><p>Every product we list is tested by playing athletes. If it cracks, frays or fades early, it doesn't get a second season on our shelves. That's the whole quality policy — brutal, simple, fair.</p><h2>Built for big catalogs</h2><p>Thousands of SKUs across cricket, football, court sports, aquatics and fitness. Deep navigation means you're never more than three clicks from the exact grip size, grill type or shuttle speed you need.</p><h2>Teams first</h2><p>From academy bulk orders to corporate wellness kits, our B2B desk ships custom-branded gear to 400+ organizations a year.</p>"
+    },
+    { "type": "text", "id": "stat_1_value", "label": "Stat 1 value", "default": "13" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 label", "default": "Sports covered" },
+    { "type": "text", "id": "stat_2_value", "label": "Stat 2 value", "default": "8" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 label", "default": "House brands" },
+    { "type": "text", "id": "stat_3_value", "label": "Stat 3 value", "default": "50K+" },
+    { "type": "text", "id": "stat_3_label", "label": "Stat 3 label", "default": "Athletes served" }
+  ]
+}
+{% endschema %}

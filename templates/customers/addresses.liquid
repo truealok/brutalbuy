@@ -1,0 +1,52 @@
+<div class="container page-body">
+  <nav class="breadcrumb" style="margin-bottom:18px">
+    <a href="{{ routes.account_url }}">{{ 'customer.account.title' | t }}</a> <span>›</span>
+    <span style="color:var(--text)">{{ 'customer.addresses.title' | t }}</span>
+  </nav>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px">
+    <h1 style="font-size:clamp(26px,3.4vw,36px);font-weight:900">{{ 'customer.addresses.title' | t }}</h1>
+    <button class="btn btn-primary" onclick="document.getElementById('addAddress').hidden = !document.getElementById('addAddress').hidden">
+      ＋ {{ 'customer.addresses.add' | t }}
+    </button>
+  </div>
+
+  <div class="contact-card" id="addAddress" hidden style="margin-bottom:20px">
+    <h2 style="font-weight:900;margin-bottom:16px">{{ 'customer.addresses.add' | t }}</h2>
+    {%- form 'customer_address', customer.new_address -%}
+      <div class="form-grid">
+        <div class="form-row">
+          <div class="field"><input type="text" name="address[first_name]" placeholder="{{ 'customer.register.first_name' | t }}"></div>
+          <div class="field"><input type="text" name="address[last_name]" placeholder="{{ 'customer.register.last_name' | t }}"></div>
+        </div>
+        <div class="field"><input type="text" name="address[company]" placeholder="Company"></div>
+        <div class="field"><input type="text" name="address[address1]" placeholder="Address"></div>
+        <div class="field"><input type="text" name="address[address2]" placeholder="Apartment, suite, etc."></div>
+        <div class="form-row">
+          <div class="field"><input type="text" name="address[city]" placeholder="City"></div>
+          <div class="field"><input type="text" name="address[zip]" placeholder="ZIP / Postal code"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><input type="text" name="address[country]" placeholder="Country"></div>
+          <div class="field"><input type="tel" name="address[phone]" placeholder="Phone"></div>
+        </div>
+        <button class="btn btn-primary" style="justify-self:start">Save</button>
+      </div>
+    {%- endform -%}
+  </div>
+
+  <div style="display:grid;gap:14px">
+    {%- paginate customer.addresses by 12 -%}
+      {%- for address in customer.addresses -%}
+        <div class="contact-card">
+          {%- if address == customer.default_address -%}
+            <span class="badge badge-new" style="position:static;display:inline-block;margin-bottom:8px">{{ 'customer.addresses.default' | t }}</span>
+          {%- endif -%}
+          <div style="font-size:14px;color:var(--text-dim)">
+            {{ address | format_address }}
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- endpaginate -%}
+  </div>
+</div>

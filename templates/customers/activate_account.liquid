@@ -1,0 +1,18 @@
+<div class="container page-body">
+  <div style="max-width:440px;margin-inline:auto">
+    <div class="contact-card">
+      <h1 style="font-weight:900;font-size:26px;margin-bottom:20px">{{ 'customer.activate.title' | t }}</h1>
+
+      {%- form 'activate_customer_password' -%}
+        {{ form.errors | default_errors }}
+
+        <div class="form-grid">
+          <div class="field"><input type="password" name="customer[password]" placeholder="{{ 'customer.login.password' | t }}" autocomplete="new-password" required></div>
+          <div class="field"><input type="password" name="customer[password_confirmation]" placeholder="Confirm password" autocomplete="new-password" required></div>
+          <button class="btn btn-primary" style="width:100%">{{ 'customer.activate.submit' | t }}</button>
+          <button class="btn btn-ghost" name="decline" style="width:100%">Decline invitation</button>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>

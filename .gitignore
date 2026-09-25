@@ -1,0 +1,14 @@
+# Build artifact — regenerate with ./make-theme-zip.sh
+brutal-buy-theme.zip
+*.zip
+
+# Shopify CLI
+.shopify/
+node_modules/
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

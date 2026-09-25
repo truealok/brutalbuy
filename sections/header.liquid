@@ -1,0 +1,31 @@
+{%- comment -%}
+  Sticky header mount point.
+
+  The header markup (logo, mega menus, drawers, cart badge) is built by
+  headerHTML() in assets/bb-main.js so that the ported markup stays byte-for-byte
+  identical to the original static site. This section owns the flags that let you
+  switch chunks of it off, and it hands those flags to JS as data attributes.
+{%- endcomment -%}
+<div
+  id="site-header"
+  data-sticky="{{ section.settings.sticky }}"
+  data-store-locator="{{ section.settings.show_store_locator }}"
+  data-search="{{ section.settings.show_search }}"
+  data-account="{{ section.settings.show_account }}"
+  data-cart="{{ section.settings.show_cart }}"
+  data-theme-toggle="{{ section.settings.show_theme_toggle }}"
+></div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "checkbox", "id": "sticky", "label": "Sticky header", "default": true },
+    { "type": "checkbox", "id": "show_store_locator", "label": "Show store locator", "default": true },
+    { "type": "checkbox", "id": "show_search", "label": "Show search", "default": true },
+    { "type": "checkbox", "id": "show_account", "label": "Show account", "default": true },
+    { "type": "checkbox", "id": "show_cart", "label": "Show cart", "default": true },
+    { "type": "checkbox", "id": "show_theme_toggle", "label": "Show dark / light toggle", "default": true }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "bb-b2b",
+      "settings": {
+        "heading": "Built for Teams & Business",
+        "subheading": "Academies, clubs, schools and corporate programs — kit everyone out with wholesale pricing and custom branding.",
+        "form_heading": "Request a bulk quote",
+        "form_subheading": "Tell us what you need — we reply within one business day.",
+        "form_success": "Quote request sent! 📦"
+      }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,45 @@
+{%- comment -%} Real Shopify customer login, styled with the account drawer's look. {%- endcomment -%}
+<div class="container page-body">
+  <div style="max-width:440px;margin-inline:auto">
+    <div class="contact-card">
+      <h1 style="font-weight:900;font-size:26px;margin-bottom:6px">{{ 'customer.login.title' | t }}</h1>
+      <p style="color:var(--text-dim);font-size:14px;margin-bottom:20px">Sign in to see your orders, wishlist and addresses.</p>
+
+      {%- form 'customer_login' -%}
+        {{ form.errors | default_errors }}
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="customer_email" style="font-size:13px;color:var(--muted)">{{ 'customer.login.email' | t }}</label>
+            <input type="email" name="customer[email]" id="customer_email" autocomplete="email" required>
+          </div>
+
+          {%- if form.password_needed -%}
+            <div class="field">
+              <label for="customer_password" style="font-size:13px;color:var(--muted)">{{ 'customer.login.password' | t }}</label>
+              <input type="password" name="customer[password]" id="customer_password" autocomplete="current-password" required>
+            </div>
+          {%- endif -%}
+
+          <button class="btn btn-primary" style="width:100%">{{ 'customer.login.submit' | t }}</button>
+        </div>
+      {%- endform -%}
+
+      <div style="display:flex;justify-content:space-between;margin-top:16px;font-size:13.5px">
+        <a href="{{ routes.account_register_url }}" style="color:var(--accent-strong)">{{ 'customer.login.create' | t }}</a>
+        <a href="#recover" onclick="document.getElementById('recover').hidden=false;return false" style="color:var(--muted)">{{ 'customer.login.forgot' | t }}</a>
+      </div>
+    </div>
+
+    <div class="contact-card" id="recover" hidden style="margin-top:20px">
+      <h2 style="font-weight:900;font-size:20px;margin-bottom:6px">{{ 'customer.recover.title' | t }}</h2>
+      <p style="color:var(--text-dim);font-size:14px;margin-bottom:18px">{{ 'customer.recover.sub' | t }}</p>
+      {%- form 'recover_customer_password' -%}
+        <div class="form-grid">
+          <div class="field"><input type="email" name="email" placeholder="{{ 'customer.login.email' | t }}" required></div>
+          <button class="btn btn-primary" style="width:100%">{{ 'customer.recover.submit' | t }}</button>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>

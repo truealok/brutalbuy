@@ -1,0 +1,61 @@
+{%- comment -%}
+  Real customer account page (/account) — live order history, addresses and
+  profile links. The demo dashboard with sample orders lives at /pages/account.
+{%- endcomment -%}
+<div class="container page-body">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px">
+    <h1 style="font-size:clamp(28px,3.6vw,40px);font-weight:900">{{ 'customer.account.title' | t }}</h1>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn btn-ghost" href="{{ routes.account_addresses_url }}">{{ 'customer.account.addresses' | t }}</a>
+      <a class="btn btn-ghost" href="/pages/withdrawal">{{ 'customer.account.returns' | t }}</a>
+      <a class="btn btn-ghost" href="{{ routes.account_logout_url }}">Sign out</a>
+    </div>
+  </div>
+
+  <div class="contact-card">
+    <h2 style="font-weight:900;margin-bottom:18px">{{ 'customer.account.order_history' | t }}</h2>
+
+    {%- paginate customer.orders by 20 -%}
+      {%- if customer.orders.size > 0 -%}
+        <div class="order-row" style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em">
+          <span>{{ 'customer.account.order' | t }}</span>
+          <span>{{ 'customer.account.date' | t }}</span>
+          <span>{{ 'customer.account.status' | t }}</span>
+          <span>{{ 'customer.account.total' | t }}</span>
+        </div>
+
+        {%- for order in customer.orders -%}
+          <div class="order-row">
+            <b><a href="{{ order.customer_url }}">{{ order.name }}</a></b>
+            <span>{{ order.created_at | date: '%b %d, %Y' }}</span>
+            <span class="order-status {% if order.fulfillment_status_label == 'Fulfilled' %}st-delivered{% elsif order.fulfillment_status_label == 'Unfulfilled' %}st-processing{% else %}st-shipped{% endif %}">
+              {{ order.financial_status_label }}{% if order.fulfillment_status_label != 'Unfulfilled' %} · {{ order.fulfillment_status_label }}{% endif %}
+            </span>
+            <b>{{ order.total_price | money }}</b>
+          </div>
+        {%- endfor -%}
+
+        {%- if paginate.pages > 1 -%}
+          <div class="pagination" style="margin-top:20px">
+            {%- if paginate.previous -%}<a class="page-btn" href="{{ paginate.previous.url }}">‹</a>{%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a class="page-btn" href="{{ part.url }}">{{ part.title }}</a>
+              {%- else -%}
+                <span class="page-btn {% if part.title == paginate.current_page %}is-active{% endif %}">{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}<a class="page-btn" href="{{ paginate.next.url }}">›</a>{%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <p style="color:var(--muted)">{{ 'customer.account.no_orders' | t }}</p>
+      {%- endif -%}
+    {%- endpaginate -%}
+
+    <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap">
+      <a class="btn btn-primary" href="{{ routes.all_products_collection_url }}">{{ 'customer.account.back_to_catalog' | t }}</a>
+      <a class="btn btn-ghost" href="/pages/withdrawal">{{ 'customer.account.return_an_order' | t }}</a>
+    </div>
+  </div>
+</div>

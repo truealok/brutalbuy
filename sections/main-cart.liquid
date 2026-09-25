@@ -1,0 +1,89 @@
+{%- comment -%}
+  Real Shopify cart — same two-column layout and .cart-item markup as the demo
+  cart page, but driving Shopify's actual cart so the Checkout button really
+  creates an order.
+{%- endcomment -%}
+<div class="container page-body">
+  <nav class="breadcrumb" style="margin-bottom:18px">
+    <a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a> <span>›</span>
+    <span style="color:var(--text)">{{ 'general.cart.title' | t }}</span>
+  </nav>
+  <h1 style="font-size:clamp(28px,3.6vw,40px);font-weight:900;margin-bottom:24px">{{ 'general.cart.title' | t }}</h1>
+
+  {%- if cart.item_count == 0 -%}
+    <div class="cart-empty" style="padding:90px 0">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:80px;height:80px;margin:0 auto 16px"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 2-1.6L23 7H6"/></svg>
+      <h2 style="font-weight:900;margin-bottom:8px">{{ 'general.cart.empty' | t }}</h2>
+      <p style="color:var(--muted);margin-bottom:22px">{{ 'general.cart.empty_sub' | t }}</p>
+      <a class="btn btn-primary" href="{{ routes.all_products_collection_url }}">{{ 'general.cart.continue_shopping' | t }}</a>
+    </div>
+  {%- else -%}
+    <form action="{{ routes.cart_url }}" method="post" novalidate data-bb-cart-form>
+      <div style="display:grid;grid-template-columns:1.6fr .9fr;gap:30px;align-items:start" class="cart-cols">
+        <div class="contact-card">
+          {%- for item in cart.items -%}
+            <div class="cart-item" style="padding:18px 0">
+              {%- if item.image -%}
+                <img src="{{ item.image | image_url: width: 200 }}" style="width:92px;height:92px" alt="{{ item.image.alt | escape }}" loading="lazy">
+              {%- endif -%}
+              <div style="flex:1">
+                <div class="ci-name" style="font-size:15px"><a href="{{ item.url }}">{{ item.product_title }}</a></div>
+                <div style="font-size:12.5px;color:var(--muted)">
+                  {%- unless item.product.has_only_default_variant -%}{{ item.variant.title }}{%- endunless -%}
+                  {%- if item.selling_plan_allocation %} • {{ item.selling_plan_allocation.selling_plan.name }}{% endif -%}
+                </div>
+                <div class="qty">
+                  <a class="qty-btn" href="{{ item.url_to_change }}?quantity={{ item.quantity | minus: 1 }}" aria-label="Decrease">−</a>
+                  <input
+                    type="number"
+                    name="updates[]"
+                    value="{{ item.quantity }}"
+                    min="0"
+                    style="width:56px;background:transparent;border:0;color:var(--text);text-align:center;font-weight:800"
+                    aria-label="{{ 'general.cart.quantity' | t }}"
+                  >
+                  <a class="qty-btn" href="{{ item.url_to_change }}?quantity={{ item.quantity | plus: 1 }}" aria-label="Increase">+</a>
+                </div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-weight:900;color:var(--accent-strong);font-size:16px">{{ item.final_line_price | money }}</div>
+                <a href="{{ item.url_to_remove }}" style="color:var(--muted);font-size:12px;text-decoration:underline;margin-top:8px;display:inline-block">{{ 'general.cart.remove' | t }}</a>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="contact-card" style="position:sticky;top:130px">
+          <h3 style="font-weight:900;margin-bottom:16px">Order Summary</h3>
+          <div style="display:grid;gap:10px;font-size:14px;color:var(--text-dim)">
+            <div style="display:flex;justify-content:space-between">
+              <span>{{ 'general.cart.subtotal' | t }}</span>
+              <b style="color:var(--text)">{{ cart.items_subtotal_price | money }}</b>
+            </div>
+            {%- for discount in cart.cart_level_discount_applications -%}
+              <div style="display:flex;justify-content:space-between">
+                <span>{{ discount.title }}</span>
+                <b style="color:#7FB77E">−{{ discount.total_allocated_amount | money }}</b>
+              </div>
+            {%- endfor -%}
+          </div>
+          <div style="border-top:1px solid var(--line);margin:16px 0;padding-top:16px;display:flex;justify-content:space-between;font-weight:900;font-size:18px">
+            <span>{{ 'general.cart.total' | t }}</span>
+            <span style="color:var(--accent-strong)">{{ cart.total_price | money }}</span>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:12px">{{ 'general.cart.shipping_note' | t }}</p>
+          <button type="submit" name="update" class="btn btn-ghost" style="width:100%;margin-bottom:10px">Update cart</button>
+          <button type="submit" name="checkout" class="btn btn-primary" style="width:100%">{{ 'general.cart.checkout' | t }}</button>
+          <a class="btn btn-ghost" style="width:100%;margin-top:10px" href="{{ routes.all_products_collection_url }}">{{ 'general.cart.continue_shopping' | t }}</a>
+        </div>
+      </div>
+    </form>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Cart page",
+  "settings": []
+}
+{% endschema %}

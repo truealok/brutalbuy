@@ -1,0 +1,48 @@
+{%- comment -%}
+  Rotating announcement bar — the three messages are editable in the customizer.
+  The rotation animation is driven by initAnnounce() in bb-main.js, which looks
+  for .announce-msg children inside #announce.
+{%- endcomment -%}
+<div class="announce" id="announce" data-speed="{{ section.settings.rotation_seconds | default: 3800 }}">
+  <div class="container">
+    <div class="announce-msg is-active">{{ section.settings.message_1 }}</div>
+    <div class="announce-msg">{{ section.settings.message_2 }}</div>
+    <div class="announce-msg">{{ section.settings.message_3 }}</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "message_1",
+      "label": "Message 1",
+      "default": "🚚 Free shipping on orders over <b>$75</b>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "message_2",
+      "label": "Message 2",
+      "default": "⚡ Mega <b>SALE</b> week — up to 45% off"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "message_3",
+      "label": "Message 3",
+      "default": "🏆 Team & bulk orders — <b>get a quote</b>"
+    },
+    {
+      "type": "range",
+      "id": "rotation_seconds",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Rotation speed",
+      "default": 4
+    }
+  ]
+}
+{% endschema %}

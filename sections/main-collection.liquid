@@ -1,0 +1,76 @@
+{%- comment -%}
+  Real Shopify collection page — renders whatever you create in
+  Products → Collections, using the same .catalog-layout / .product-grid
+  markup as the demo catalog page so the two look identical.
+{%- endcomment -%}
+<div class="container">
+  <nav class="breadcrumb" style="padding-top:22px">
+    <a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a> <span>›</span>
+    <span style="color:var(--text)">{{ collection.title }}</span>
+  </nav>
+
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:10px 0 6px">
+    <h1 id="pageTitle" style="font-size:clamp(28px,3.6vw,40px);font-weight:900">{{ collection.title }}</h1>
+    <span class="results-count">{{ collection.products_count }} products</span>
+  </div>
+
+  {%- if collection.description != blank -%}
+    <div class="prose" style="margin-bottom:18px">{{ collection.description }}</div>
+  {%- endif -%}
+
+  <div class="catalog-top">
+    <span class="results-count"></span>
+    <form class="sort-form" method="get" style="margin-left:auto">
+      <label style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted)">
+        Sort by
+        <select class="select" name="sort_by" onchange="this.form.submit()">
+          {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+          {%- for option in collection.sort_options -%}
+            <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
+          {%- endfor -%}
+        </select>
+      </label>
+    </form>
+  </div>
+
+  {%- paginate collection.products by 12 -%}
+    {%- if collection.products.size > 0 -%}
+      <div class="product-grid cols-3">
+        {%- for product in collection.products -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <div class="pagination">
+          {%- if paginate.previous -%}
+            <a class="page-btn" href="{{ paginate.previous.url }}">‹</a>
+          {%- endif -%}
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}
+              <a class="page-btn" href="{{ part.url }}">{{ part.title }}</a>
+            {%- else -%}
+              <span class="page-btn {% if part.title == paginate.current_page %}is-active{% endif %}">{{ part.title }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if paginate.next -%}
+            <a class="page-btn" href="{{ paginate.next.url }}">›</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="cart-empty" style="padding:70px 0">
+        <h2 style="font-weight:900;margin-bottom:8px">Nothing here yet</h2>
+        <p style="color:var(--muted);margin-bottom:22px">Add products to this collection in Shopify admin and they'll appear automatically.</p>
+        <a class="btn btn-primary" href="{{ routes.all_products_collection_url }}">Browse everything</a>
+      </div>
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Collection page",
+  "settings": []
+}
+{% endschema %}

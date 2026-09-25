@@ -1,0 +1,29 @@
+{%- comment -%}
+  Tabbed product rail. Three tabs (Best Sellers / New Arrivals / On Sale) are
+  built by bb-home.js from the demo catalog, or from real Shopify products when
+  Theme settings → Developer → "Use real Shopify products" is enabled.
+{%- endcomment -%}
+<section class="section" style="padding-top:10px">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+        <p class="section-sub">{{ section.settings.subheading }}</p>
+      </div>
+      <a class="section-link" href="/pages/catalog">{{ section.settings.link_label }} →</a>
+    </div>
+    <div id="productTabs"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tabbed products",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Gear Up" },
+    { "type": "inline_richtext", "id": "subheading", "label": "Subheading", "default": "Handpicked by athletes, sorted by hype." },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Browse full catalog" }
+  ],
+  "presets": [{ "name": "Tabbed products" }]
+}
+{% endschema %}

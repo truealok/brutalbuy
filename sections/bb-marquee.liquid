@@ -1,0 +1,32 @@
+{%- comment -%}
+  Infinite marquee strip. The track is duplicated in JS so the loop looks
+  seamless; the six items below are editable and animate on hover-pause.
+{%- endcomment -%}
+{%- capture bb_settings -%}
+{
+  "items": [
+    {{ section.settings.item_1 | json }},
+    {{ section.settings.item_2 | json }},
+    {{ section.settings.item_3 | json }},
+    {{ section.settings.item_4 | json }},
+    {{ section.settings.item_5 | json }},
+    {{ section.settings.item_6 | json }}
+  ]
+}
+{%- endcapture -%}
+<div class="marquee" id="marquee" data-bb-settings="{{ bb_settings | escape }}"></div>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "settings": [
+    { "type": "text", "id": "item_1", "label": "Item 1", "default": "Free Shipping Over $75" },
+    { "type": "text", "id": "item_2", "label": "Item 2", "default": "30-Day Returns" },
+    { "type": "text", "id": "item_3", "label": "Item 3", "default": "Pro Quality" },
+    { "type": "text", "id": "item_4", "label": "Item 4", "default": "Team & Bulk Orders" },
+    { "type": "text", "id": "item_5", "label": "Item 5", "default": "2-Year Warranty" },
+    { "type": "text", "id": "item_6", "label": "Item 6", "default": "Secure Checkout" }
+  ],
+  "presets": [{ "name": "Marquee" }]
+}
+{% endschema %}

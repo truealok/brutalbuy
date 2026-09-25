@@ -1,0 +1,45 @@
+{%- comment -%}
+  Sports circle carousel. The 13 circles come from BB.sports in bb-data.js.
+
+  Note: the original static page never wired these arrows up (bindCarouselNav
+  looked for a #sportsCarouselWrap wrapper that didn't exist, so it bailed out).
+  The wrapper id below fixes that, so the arrows scroll the rail as intended.
+{%- endcomment -%}
+<section class="section" style="padding-top:26px" id="sportsCarouselWrap">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+        <p class="section-sub">{{ section.settings.subheading }}</p>
+      </div>
+      <div class="carousel-nav">
+        <button class="c-btn prev" aria-label="{{ 'general.accessibility.previous' | t }}">‹</button>
+        <button class="c-btn next" aria-label="{{ 'general.accessibility.next' | t }}">›</button>
+      </div>
+    </div>
+    <div class="carousel">
+      <div class="carousel-track" id="sportsCarousel"></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sports carousel",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Explore Your Sport Style"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "13 sports. Thousands of products. One brutal marketplace."
+    }
+  ],
+  "presets": [{ "name": "Sports carousel" }]
+}
+{% endschema %}

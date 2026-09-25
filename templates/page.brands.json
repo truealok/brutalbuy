@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "bb-brands",
+      "settings": {
+        "heading": "Our Brands",
+        "subheading": "Eight brutal labels. One standard: gear that survives the season."
+      }
+    }
+  },
+  "order": ["main"]
+}

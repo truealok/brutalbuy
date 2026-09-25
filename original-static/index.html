@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brutal Buy — Premium Sports Gear, Brutal Prices</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <!-- HERO SLIDER -->
+  <section class="hero" id="hero"></section>
+
+  <!-- TRUST BAR -->
+  <div class="container"><div class="trust" id="trustBar"></div></div>
+
+  <!-- SPORTS CIRCLES -->
+  <section class="section" style="padding-top:26px">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Explore Your Sport Style</h2>
+          <p class="section-sub">13 sports. Thousands of products. One brutal marketplace.</p>
+        </div>
+        <div class="carousel-nav">
+          <button class="c-btn prev">‹</button>
+          <button class="c-btn next">›</button>
+        </div>
+      </div>
+      <div class="carousel">
+        <div class="carousel-track" id="sportsCarousel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABBED PRODUCTS -->
+  <section class="section" style="padding-top:10px">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Gear Up</h2>
+          <p class="section-sub">Handpicked by athletes, sorted by hype.</p>
+        </div>
+        <a class="section-link" href="catalog.html">Browse full catalog →</a>
+      </div>
+      <div id="productTabs"></div>
+    </div>
+  </section>
+
+  <!-- DEAL + COUNTDOWN -->
+  <section class="section" style="padding-top:0" id="dealBanner"></section>
+
+  <!-- GEAR MOSAIC -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Shop by Sport Gear</h2>
+          <p class="section-sub">Every category, one click deep.</p>
+        </div>
+        <div class="carousel-nav" id="gearNav"></div>
+      </div>
+      <div id="gearMosaic"></div>
+    </div>
+  </section>
+
+  <!-- MASONRY GALLERY -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Brutal Buy in Action</h2>
+          <p class="section-sub">Tag @brutalbuy to get featured.</p>
+        </div>
+      </div>
+      <div class="masonry" id="gallery"></div>
+    </div>
+  </section>
+
+  <!-- GEAR TYPES -->
+  <section class="section" style="padding-top:0" id="gearTypesWrap">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Shop by Gear Type</h2>
+          <p class="section-sub">Footwear to bags — pick your category.</p>
+        </div>
+        <div class="carousel-nav">
+          <button class="c-btn prev">‹</button>
+          <button class="c-btn next">›</button>
+        </div>
+      </div>
+      <div class="carousel">
+        <div class="carousel-track" id="gearTypes" style="display:grid;grid-auto-flow:column;grid-auto-columns:180px;overflow-x:auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROWD FAVORITES -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Crowd Favorites</h2>
+          <p class="section-sub">What everyone's buying right now.</p>
+        </div>
+        <a class="section-link" href="catalog.html?tag=sale">See best sellers →</a>
+      </div>
+      <div class="cf-grid" id="crowdGrid"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" id="marquee"></div>
+
+  <!-- VIDEO BANNER -->
+  <section class="section" id="videoBanner">
+    <div class="container" style="display:contents"></div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="section" style="padding-top:0" id="newsletter"></section>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{%- comment -%}
+  Crowd Favorites — eight image tiles, one per sport, built by bb-home.js.
+{%- endcomment -%}
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+        <p class="section-sub">{{ section.settings.subheading }}</p>
+      </div>
+      <a class="section-link" href="{{ section.settings.link | default: '/pages/catalog?tag=sale' }}">{{ section.settings.link_label }} →</a>
+    </div>
+    <div class="cf-grid" id="crowdGrid"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Crowd favorites",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Crowd Favorites" },
+    { "type": "inline_richtext", "id": "subheading", "label": "Subheading", "default": "What everyone's buying right now." },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "See best sellers" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "presets": [{ "name": "Crowd favorites" }]
+}
+{% endschema %}

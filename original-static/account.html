@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Account — Brutal Buy</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container account-layout">
+    <aside class="acc-side">
+      <a href="#orders" class="is-active" data-tab="orders">📦 Orders</a>
+      <a href="#profile" data-tab="profile">👤 Profile</a>
+      <a href="#wishlist" data-tab="wishlist">♡ Wishlist</a>
+      <a href="#addresses" data-tab="addresses">📍 Addresses</a>
+      <a href="withdrawal.html">↩ Returns & Cancellation</a>
+    </aside>
+
+    <div class="acc-main" id="accMain">
+      <!-- orders -->
+      <section data-panel="orders">
+        <h2 style="font-weight:900;margin-bottom:18px">Order history</h2>
+        <div class="order-row" style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em">
+          <span>Order</span><span>Date</span><span>Status</span><span>Total</span>
+        </div>
+        <div class="order-row"><b>#BB-10482</b><span>Sep 21, 2026</span><span class="order-status st-shipped">Shipped</span><b>$182.00</b></div>
+        <div class="order-row"><b>#BB-10391</b><span>Sep 09, 2026</span><span class="order-status st-delivered">Delivered</span><b>$64.50</b></div>
+        <div class="order-row"><b>#BB-10287</b><span>Aug 28, 2026</span><span class="order-status st-processing">Processing</span><b>$239.00</b></div>
+        <div class="order-row" style="border:0"><b>#BB-10133</b><span>Aug 03, 2026</span><span class="order-status st-delivered">Delivered</span><b>$96.20</b></div>
+        <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="catalog.html">Buy these again</a>
+          <a class="btn btn-ghost" href="withdrawal.html">Return an order</a>
+        </div>
+      </section>
+
+      <!-- profile -->
+      <section data-panel="profile" hidden>
+        <h2 style="font-weight:900;margin-bottom:18px">Profile</h2>
+        <form class="form-grid" style="max-width:460px" onsubmit="event.preventDefault();BB.toast('Profile saved ✓')">
+          <div class="field"><input value="Naman Singh"></div>
+          <div class="field"><input type="email" value="naman@brutalbuy.com"></div>
+          <div class="field"><input placeholder="Phone"></div>
+          <div class="field">
+            <select><option>Cricket</option><option>Football</option><option>Badminton</option><option>Gym & Fitness</option></select>
+            <small style="color:var(--muted);font-size:12px">Favorite sport — we tune your homepage around it</small>
+          </div>
+          <button class="btn btn-primary" style="justify-self:start">Save changes</button>
+        </form>
+      </section>
+
+      <!-- wishlist -->
+      <section data-panel="wishlist" hidden>
+        <h2 style="font-weight:900;margin-bottom:18px">Wishlist</h2>
+        <div class="product-grid cols-3" id="wishGrid"></div>
+      </section>
+
+      <!-- addresses -->
+      <section data-panel="addresses" hidden>
+        <h2 style="font-weight:900;margin-bottom:18px">Addresses</h2>
+        <div class="contact-card" style="margin-bottom:14px">
+          <b>Home</b>
+          <p style="color:var(--text-dim);font-size:14px;margin-top:6px">42 Maple Street, Apt 7B<br>Downtown, TX 75001</p>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <button class="btn btn-ghost" style="padding:8px 16px" onclick="BB.toast('Edit address — demo')">Edit</button>
+            <button class="btn btn-ghost" style="padding:8px 16px" onclick="BB.toast('Address removed')">Remove</button>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="BB.toast('Add address — demo')">＋ Add new address</button>
+      </section>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* wishlist: 3 demo favorites */
+    const wSport = BB.sports[0], wCat = wSport.categories[0];
+    document.getElementById("wishGrid").innerHTML =
+      [0, 1, 2].map(i => BB.productCard(BB.products(wSport.id, wCat.id, wCat.sub[0], i))).join("");
+
+    /* tab switching with hash support (#orders / #profile) */
+    const links = document.querySelectorAll(".acc-side a[data-tab]");
+    function show(tab) {
+      document.querySelectorAll("[data-panel]").forEach(p => p.hidden = p.dataset.panel !== tab);
+      links.forEach(a => a.classList.toggle("is-active", a.dataset.tab === tab));
+    }
+    links.forEach(a => a.addEventListener("click", e => {
+      e.preventDefault(); history.replaceState(null, "", "#" + a.dataset.tab); show(a.dataset.tab);
+    }));
+    if (location.hash) show(location.hash.slice(1));
+  </script>
+</body>
+</html>

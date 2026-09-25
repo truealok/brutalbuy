@@ -1,0 +1,18 @@
+{%- comment -%} 404 page, styled like the rest of the theme. {%- endcomment -%}
+<section class="page-hero">
+  <div class="container" style="text-align:center">
+    <h1 style="font-size:clamp(44px,7vw,86px);font-weight:900">404</h1>
+    <p>{{ 'general.404.sub' | t }}</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px">
+      <a class="btn btn-primary" href="{{ routes.root_url }}">{{ 'general.404.back' | t }}</a>
+      <a class="btn btn-ghost" href="{{ routes.all_products_collection_url }}">{{ 'general.cart.continue_shopping' | t }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "404 page",
+  "settings": []
+}
+{% endschema %}

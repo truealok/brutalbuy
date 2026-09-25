@@ -1,0 +1,22 @@
+{%- comment -%}
+  Demo product detail page.
+
+  Renders the demo PDP from a ?id= query param via assets/bb-product.js:
+  gallery + thumbs, colour and size pickers, quantity, add-to-cart, related
+  products, breadcrumbs and the three trust lines.
+
+  For a real Shopify product page see templates/product.json.
+{%- endcomment -%}
+<div class="container">
+  <nav class="breadcrumb" id="crumb" style="padding-top:22px"></nav>
+  <div id="pdpHost"></div>
+</div>
+
+<script src="{{ 'bb-product.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Product page (demo)",
+  "settings": []
+}
+{% endschema %}

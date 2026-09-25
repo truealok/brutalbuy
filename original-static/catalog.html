@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catalog — Brutal Buy</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container">
+    <nav class="breadcrumb" id="crumb" style="padding-top:22px"></nav>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:10px 0 6px">
+      <h1 id="pageTitle" style="font-size:clamp(28px,3.6vw,40px);font-weight:900">All Sports Gear</h1>
+      <span class="results-count" id="resultsCount"></span>
+    </div>
+    <div class="sub-chips" id="subChips"></div>
+
+    <div class="catalog-layout">
+      <aside class="filters" id="filters"></aside>
+      <div>
+        <div class="catalog-top">
+          <span class="results-count" id="resultsCount2" style="display:none"></span>
+          <label style="display:flex;align-items:center;gap:10px;margin-left:auto;font-size:13.5px;color:var(--muted)">
+            Sort by
+            <select class="select" id="sortSel">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="rating">Top Rated</option>
+            </select>
+          </label>
+        </div>
+        <div class="product-grid cols-3" id="catalogGrid"></div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/catalog.js"></script>
+</body>
+</html>
