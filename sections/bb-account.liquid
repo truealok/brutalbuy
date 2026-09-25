@@ -1,0 +1,83 @@
+{%- comment -%}
+  Demo account dashboard (Orders / Profile / Wishlist / Addresses).
+
+  This is the static demo shell — the order rows below are sample data. The
+  real, authenticated version lives in templates/customers/account.liquid and is
+  reachable at /account once a customer signs in.
+{%- endcomment -%}
+<div class="container account-layout">
+  <aside class="acc-side">
+    <a href="#orders" class="is-active" data-tab="orders">📦 Orders</a>
+    <a href="#profile" data-tab="profile">👤 Profile</a>
+    <a href="#wishlist" data-tab="wishlist">♡ Wishlist</a>
+    <a href="#addresses" data-tab="addresses">📍 Addresses</a>
+    <a href="{{ routes.account_url }}">↩ {{ section.settings.returns_label }}</a>
+    {%- if customer -%}
+      <a href="{{ routes.account_logout_url }}">Sign out</a>
+    {%- else -%}
+      <a href="{{ routes.account_login_url }}">Sign in (real account)</a>
+    {%- endif -%}
+  </aside>
+
+  <div class="acc-main" id="accMain">
+    <section data-panel="orders">
+      <h2 style="font-weight:900;margin-bottom:18px">{{ section.settings.orders_heading }}</h2>
+      <div class="order-row" style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em">
+        <span>Order</span><span>Date</span><span>Status</span><span>Total</span>
+      </div>
+      <div class="order-row"><b>#BB-10482</b><span>Sep 21, 2026</span><span class="order-status st-shipped">Shipped</span><b>$182.00</b></div>
+      <div class="order-row"><b>#BB-10391</b><span>Sep 09, 2026</span><span class="order-status st-delivered">Delivered</span><b>$64.50</b></div>
+      <div class="order-row"><b>#BB-10287</b><span>Aug 28, 2026</span><span class="order-status st-processing">Processing</span><b>$239.00</b></div>
+      <div class="order-row" style="border:0"><b>#BB-10133</b><span>Aug 03, 2026</span><span class="order-status st-delivered">Delivered</span><b>$96.20</b></div>
+      <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="/pages/catalog">Buy these again</a>
+        <a class="btn btn-ghost" href="/pages/withdrawal">Return an order</a>
+      </div>
+    </section>
+
+    <section data-panel="profile" hidden>
+      <h2 style="font-weight:900;margin-bottom:18px">{{ section.settings.profile_heading }}</h2>
+      <form class="form-grid" style="max-width:460px" data-demo-toast="Profile saved ✓">
+        <div class="field"><input value="Naman Singh"></div>
+        <div class="field"><input type="email" value="naman@brutalbuy.com"></div>
+        <div class="field"><input placeholder="Phone"></div>
+        <div class="field">
+          <select><option>Cricket</option><option>Football</option><option>Badminton</option><option>Gym & Fitness</option></select>
+          <small style="color:var(--muted);font-size:12px">Favorite sport — we tune your homepage around it</small>
+        </div>
+        <button class="btn btn-primary" style="justify-self:start">Save changes</button>
+      </form>
+    </section>
+
+    <section data-panel="wishlist" hidden>
+      <h2 style="font-weight:900;margin-bottom:18px">{{ section.settings.wishlist_heading }}</h2>
+      <div class="product-grid cols-3" id="wishGrid"></div>
+    </section>
+
+    <section data-panel="addresses" hidden>
+      <h2 style="font-weight:900;margin-bottom:18px">{{ section.settings.addresses_heading }}</h2>
+      <div class="contact-card" style="margin-bottom:14px">
+        <b>Home</b>
+        <p style="color:var(--text-dim);font-size:14px;margin-top:6px">42 Maple Street, Apt 7B<br>Downtown, TX 75001</p>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn btn-ghost" style="padding:8px 16px" onclick="BB.toast('Edit address — demo')">Edit</button>
+          <button class="btn btn-ghost" style="padding:8px 16px" onclick="BB.toast('Address removed')">Remove</button>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="BB.toast('Add address — demo')">＋ Add new address</button>
+    </section>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Account page",
+  "settings": [
+    { "type": "text", "id": "orders_heading", "label": "Orders heading", "default": "Order history" },
+    { "type": "text", "id": "profile_heading", "label": "Profile heading", "default": "Profile" },
+    { "type": "text", "id": "wishlist_heading", "label": "Wishlist heading", "default": "Wishlist" },
+    { "type": "text", "id": "addresses_heading", "label": "Addresses heading", "default": "Addresses" },
+    { "type": "text", "id": "returns_label", "label": "Returns link label", "default": "Returns & Cancellation" }
+  ]
+}
+{% endschema %}

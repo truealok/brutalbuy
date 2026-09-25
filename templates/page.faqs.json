@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "bb-faqs",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "Everything about orders, shipping, returns and gear."
+      }
+    }
+  },
+  "order": ["main"]
+}

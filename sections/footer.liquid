@@ -1,0 +1,34 @@
+{%- comment -%}
+  Footer mount point.
+
+  footerHTML() in assets/bb-main.js renders the footer columns (which are built
+  from the demo sports tree), so the markup matches the original site exactly.
+  The contact details below are passed through as data attributes so the
+  customizer values win over the hardcoded defaults.
+{%- endcomment -%}
+<div
+  id="site-footer"
+  data-description="{{ section.settings.description | escape }}"
+  data-phone="{{ section.settings.phone | escape }}"
+  data-email="{{ section.settings.email | escape }}"
+  data-address="{{ section.settings.address | escape }}"
+  data-copyright="{{ section.settings.copyright | escape }}"
+></div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Store description",
+      "default": "Brutal quality sports gear at brutal prices. From gully cricket to pro circuits — we outfit every athlete."
+    },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "+1 (555) 014-8899" },
+    { "type": "text", "id": "email", "label": "Email", "default": "support@brutalbuy.com" },
+    { "type": "text", "id": "address", "label": "Address", "default": "Unit 14, Grand Sports Complex, TX" },
+    { "type": "text", "id": "copyright", "label": "Copyright line", "default": "Brutal Buy. Built with ❤️ for athletes." }
+  ]
+}
+{% endschema %}

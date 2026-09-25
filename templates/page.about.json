@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "bb-about",
+      "settings": {
+        "heading": "We're Brutal About Gear",
+        "subheading": "Brutal Buy started in a college dorm with one cricket bat and a grudge against overpriced equipment. Today we stock 13 sports and thousands of products — at prices that don't need a second thought.",
+        "body": "<h2>Our promise</h2><p>Every product we list is tested by playing athletes. If it cracks, frays or fades early, it doesn't get a second season on our shelves. That's the whole quality policy — brutal, simple, fair.</p><h2>Built for big catalogs</h2><p>Thousands of SKUs across cricket, football, court sports, aquatics and fitness. Deep navigation means you're never more than three clicks from the exact grip size, grill type or shuttle speed you need.</p><h2>Teams first</h2><p>From academy bulk orders to corporate wellness kits, our B2B desk ships custom-branded gear to 400+ organizations a year.</p>",
+        "stat_1_value": "13",
+        "stat_1_label": "Sports covered",
+        "stat_2_value": "8",
+        "stat_2_label": "House brands",
+        "stat_3_value": "50K+",
+        "stat_3_label": "Athletes served"
+      }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,34 @@
+{%- comment -%}
+  Shop by Gear Type. The six cards come from BB.gearTypes in bb-data.js.
+
+  The wrapping section keeps the id "gearTypesWrap" because bb-home.js uses it
+  as both the carousel wrapper (for the arrows) and the scroll target.
+{%- endcomment -%}
+<section class="section" style="padding-top:0" id="gearTypesWrap">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+        <p class="section-sub">{{ section.settings.subheading }}</p>
+      </div>
+      <div class="carousel-nav">
+        <button class="c-btn prev" aria-label="{{ 'general.accessibility.previous' | t }}">‹</button>
+        <button class="c-btn next" aria-label="{{ 'general.accessibility.next' | t }}">›</button>
+      </div>
+    </div>
+    <div class="carousel">
+      <div class="carousel-track" id="gearTypes" style="display:grid;grid-auto-flow:column;grid-auto-columns:180px;overflow-x:auto"></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gear types",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Shop by Gear Type" },
+    { "type": "inline_richtext", "id": "subheading", "label": "Subheading", "default": "Footwear to bags — pick your category." }
+  ],
+  "presets": [{ "name": "Gear types" }]
+}
+{% endschema %}

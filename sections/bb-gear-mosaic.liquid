@@ -1,0 +1,27 @@
+{%- comment -%}
+  Gear mosaic — two switchable pages of tiles, built by bb-home.js.
+  The tile labels and destinations live in bb-home.js under "GEAR MOSAIC".
+{%- endcomment -%}
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+        <p class="section-sub">{{ section.settings.subheading }}</p>
+      </div>
+      <div class="carousel-nav" id="gearNav"></div>
+    </div>
+    <div id="gearMosaic"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gear mosaic",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Shop by Sport Gear" },
+    { "type": "inline_richtext", "id": "subheading", "label": "Subheading", "default": "Every category, one click deep." }
+  ],
+  "presets": [{ "name": "Gear mosaic" }]
+}
+{% endschema %}

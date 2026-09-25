@@ -1,0 +1,15 @@
+{% render 'bb-page-hero', heading: section.settings.heading, sub: section.settings.subheading %}
+
+<div class="container page-body">
+  <div style="max-width:760px;margin-inline:auto" id="faqList"></div>
+</div>
+
+{% schema %}
+{
+  "name": "FAQs page",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Frequently Asked Questions" },
+    { "type": "textarea", "id": "subheading", "label": "Intro paragraph", "default": "Everything about orders, shipping, returns and gear." }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,54 @@
+{% render 'bb-page-hero', heading: section.settings.heading, sub: section.settings.subheading %}
+
+<div class="container page-body">
+  <div class="contact-layout">
+    <div class="contact-card">
+      <h3 style="font-weight:900;margin-bottom:14px">{{ section.settings.card_heading }}</h3>
+      <div class="c-line">📞 {{ section.settings.phone }}</div>
+      <div class="c-line">✉️ {{ section.settings.email }}</div>
+      <div class="c-line">💬 {{ section.settings.chat }}</div>
+      <div class="c-line">📍 {{ section.settings.address }}</div>
+      <div style="border-top:1px solid var(--line);margin-top:16px;padding-top:16px;font-size:13px;color:var(--muted)">
+        {{ section.settings.response_label }} <b style="color:var(--accent-strong)">{{ section.settings.response_value }}</b>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      {%- comment -%}
+        Demo form — shows the original toast. To make it deliver real messages,
+        swap this <form> for {% raw %}{% form 'contact' %}{% endraw %} and give the
+        fields the names contact[name] / contact[email] / contact[body].
+        See README → "Making the demo forms real".
+      {%- endcomment -%}
+      <form class="form-grid" data-demo-toast="Message sent — we will reply soon! ✉️">
+        <div class="form-row">
+          <div class="field"><input placeholder="Your name" required></div>
+          <div class="field"><input type="email" placeholder="Email" required></div>
+        </div>
+        <div class="field">
+          <select><option>Order support</option><option>Bulk / B2B enquiry</option><option>Product question</option><option>Returns</option></select>
+        </div>
+        <div class="field"><input placeholder="Order ID (optional)"></div>
+        <div class="field"><textarea rows="5" placeholder="How can we help?" required></textarea></div>
+        <button class="btn btn-primary" style="justify-self:start">Send message →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact page",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Talk to Us" },
+    { "type": "textarea", "id": "subheading", "label": "Intro paragraph", "default": "Order help, bulk quotes, or just gear talk — we answer fast." },
+    { "type": "text", "id": "card_heading", "label": "Card heading", "default": "Reach us" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "+1 (555) 014-8899" },
+    { "type": "text", "id": "email", "label": "Email", "default": "support@brutalbuy.com" },
+    { "type": "text", "id": "chat", "label": "Live chat", "default": "Live chat · 9am–9pm daily" },
+    { "type": "text", "id": "address", "label": "Address", "default": "Unit 14, Grand Sports Complex, TX" },
+    { "type": "text", "id": "response_label", "label": "Response label", "default": "Average first response:" },
+    { "type": "text", "id": "response_value", "label": "Response value", "default": "under 2 hours" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,67 @@
+{%- comment -%}
+  Product card for real Shopify products.
+
+  Uses exactly the same .p-card / .p-media / .p-info markup as the demo cards
+  rendered by BB.productCard() in bb-main.js, so real and demo grids look
+  identical. Usage:
+    {% render 'product-card', product: product %}
+{%- endcomment -%}
+<article class="p-card">
+  <a class="p-media" href="{{ product.url }}">
+    {%- if product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 600 }}"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        loading="lazy"
+        width="600"
+        height="510"
+      >
+    {%- endif -%}
+
+    <div class="p-badges">
+      {%- unless product.available -%}
+        <span class="badge badge-hot">Sold out</span>
+      {%- endunless -%}
+      {%- if product.compare_at_price > product.price -%}
+        <span class="badge badge-sale">Sale</span>
+      {%- endif -%}
+      {%- if product.tags contains 'new' -%}
+        <span class="badge badge-new">New</span>
+      {%- endif -%}
+      {%- if product.tags contains 'hot' -%}
+        <span class="badge badge-hot">Hot</span>
+      {%- endif -%}
+    </div>
+  </a>
+
+  <div class="p-actions">
+    <button class="pa-btn" title="Add to wishlist" onclick="BB.toast('Saved to wishlist ♡')">♡</button>
+    <button class="pa-btn" title="Quick view" onclick="BB.toast('Quick view — demo')">⤢</button>
+    <button class="pa-btn" title="Compare" onclick="BB.toast('Added to compare')">⇄</button>
+  </div>
+
+  {%- if product.available -%}
+    <form action="{{ routes.cart_add_url }}" method="post" class="p-quick-form" data-bb-ajax-cart>
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" class="p-quick">Add to cart</button>
+    </form>
+  {%- else -%}
+    <button class="p-quick" disabled>Sold out</button>
+  {%- endif -%}
+
+  <div class="p-info">
+    <span class="p-cat">
+      {%- if product.vendor != blank -%}{{ product.vendor }}{% endif -%}
+      {%- if product.type != blank %} • {{ product.type }}{% endif -%}
+    </span>
+    <h3 class="p-name"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    <div class="stars">★ {{ product.metafields.reviews.rating.value | default: '4.5' }} <span style="color:var(--muted)">({{ product.metafields.reviews.rating_count.value | default: '12' }})</span></div>
+    <div class="p-price">
+      <span class="now">{{ product.price | money }}</span>
+      {%- if product.compare_at_price > product.price -%}
+        <span class="was">{{ product.compare_at_price | money }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,17 @@
+{%- comment -%}
+  Hero slider mount point.
+
+  The four slides (tag / title / subtitle / two CTAs / background image) are
+  generated from BB.heroSlides in assets/bb-data.js, and the slider itself
+  (ken-burns, staggered copy, dots, arrows, 6s autoplay) is driven by bb-home.js.
+  Edit the slide copy there — search for "Hero slides".
+{%- endcomment -%}
+<section class="hero" id="hero"></section>
+
+{% schema %}
+{
+  "name": "Hero slider",
+  "settings": [],
+  "presets": [{ "name": "Hero slider" }]
+}
+{% endschema %}

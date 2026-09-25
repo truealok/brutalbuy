@@ -1,0 +1,30 @@
+{%- comment -%}
+  Deal of the week + live countdown. bb-home.js ticks the digits down from
+  2d 8h 45m; the copy below is handed to it through data-bb-settings.
+{%- endcomment -%}
+{%- capture bb_settings -%}
+{
+  "tag": {{ section.settings.tag | json }},
+  "heading": {{ section.settings.heading | json }},
+  "subheading": {{ section.settings.subheading | json }},
+  "cta1": { "label": {{ section.settings.cta_primary_label | json }}, "href": {{ section.settings.cta_primary_link | json }} },
+  "cta2": { "label": {{ section.settings.cta_secondary_label | json }}, "href": {{ section.settings.cta_secondary_link | json }} }
+}
+{%- endcapture -%}
+<section class="section" style="padding-top:0" id="dealBanner" data-bb-settings="{{ bb_settings | escape }}"></section>
+
+{% schema %}
+{
+  "name": "Deal countdown",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Deal of the Week" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Pro Kit — Up to 45% Off" },
+    { "type": "inline_richtext", "id": "subheading", "label": "Subheading", "default": "Match-grade gear bundles for cricket, football and court sports. When it's gone, it's gone." },
+    { "type": "text", "id": "cta_primary_label", "label": "Primary button label", "default": "Shop the deal" },
+    { "type": "url", "id": "cta_primary_link", "label": "Primary button link" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Secondary button label", "default": "View bats" },
+    { "type": "url", "id": "cta_secondary_link", "label": "Secondary button link" }
+  ],
+  "presets": [{ "name": "Deal countdown" }]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Brutal Buy",
+    "theme_version": "1.0.0",
+    "theme_author": "Brutal Buy",
+    "theme_documentation_url": "https://shopify.dev/docs/storefronts/themes",
+    "theme_support_url": "https://shopify.dev/docs/storefronts/themes"
+  },
+  {
+    "name": "Theme",
+    "settings": [
+      {
+        "type": "select",
+        "id": "default_color_scheme",
+        "label": "Default color scheme",
+        "info": "Visitors can switch this from the header toggle; their choice is remembered in localStorage.",
+        "options": [
+          { "value": "dark", "label": "Dark (default)" },
+          { "value": "light", "label": "Light" }
+        ],
+        "default": "dark"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1100,
+        "max": 1600,
+        "step": 20,
+        "unit": "px",
+        "label": "Page width",
+        "default": 1280
+      }
+    ]
+  },
+  {
+    "name": "Social links",
+    "settings": [
+      { "type": "url", "id": "social_instagram", "label": "Instagram" },
+      { "type": "url", "id": "social_x", "label": "X / Twitter" },
+      { "type": "url", "id": "social_youtube", "label": "YouTube" },
+      { "type": "url", "id": "social_facebook", "label": "Facebook" }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "The header cart drawer and /pages/cart are the built-in demo cart (browser localStorage). The real Shopify cart — with working checkout — lives at /cart, and your product and collection templates add to it natively."
+      }
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "bb-contact",
+      "settings": {
+        "heading": "Talk to Us",
+        "subheading": "Order help, bulk quotes, or just gear talk — we answer fast.",
+        "card_heading": "Reach us",
+        "phone": "+1 (555) 014-8899",
+        "email": "support@brutalbuy.com",
+        "chat": "Live chat · 9am–9pm daily",
+        "address": "Unit 14, Grand Sports Complex, TX",
+        "response_label": "Average first response:",
+        "response_value": "under 2 hours"
+      }
+    }
+  },
+  "order": ["main"]
+}

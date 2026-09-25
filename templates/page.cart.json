@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "bb-cart-page",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

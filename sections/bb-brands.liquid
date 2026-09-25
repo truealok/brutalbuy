@@ -1,0 +1,15 @@
+{% render 'bb-page-hero', heading: section.settings.heading, sub: section.settings.subheading %}
+
+<div class="container page-body">
+  <div class="brand-grid" id="brandGrid"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Brands page",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Our Brands" },
+    { "type": "textarea", "id": "subheading", "label": "Intro paragraph", "default": "Eight brutal labels. One standard: gear that survives the season." }
+  ]
+}
+{% endschema %}

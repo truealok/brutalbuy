@@ -1,0 +1,35 @@
+{% render 'bb-page-hero', heading: section.settings.heading, sub: section.settings.subheading %}
+
+<div class="container page-body">
+  <div id="b2bSections" style="display:grid;gap:26px;max-width:860px;margin-inline:auto"></div>
+
+  <div class="contact-card" style="max-width:860px;margin:34px auto 0">
+    <h3 style="font-weight:900;margin-bottom:6px">{{ section.settings.form_heading }}</h3>
+    <p style="color:var(--text-dim);font-size:14px;margin-bottom:18px">{{ section.settings.form_subheading }}</p>
+    <form class="form-grid" data-demo-toast="{{ section.settings.form_success | escape }}">
+      <div class="form-row">
+        <div class="field"><input placeholder="Organization name" required></div>
+        <div class="field"><input type="email" placeholder="Work email" required></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><input placeholder="Sport / category"></div>
+        <div class="field"><input type="number" placeholder="Estimated quantity" min="1"></div>
+      </div>
+      <div class="field"><textarea rows="4" placeholder="Anything else we should know?"></textarea></div>
+      <button class="btn btn-primary" style="justify-self:start">Send request →</button>
+    </form>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "B2B page",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Built for Teams & Business" },
+    { "type": "textarea", "id": "subheading", "label": "Intro paragraph", "default": "Academies, clubs, schools and corporate programs — kit everyone out with wholesale pricing and custom branding." },
+    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Request a bulk quote" },
+    { "type": "text", "id": "form_subheading", "label": "Form subheading", "default": "Tell us what you need — we reply within one business day." },
+    { "type": "text", "id": "form_success", "label": "Success message", "default": "Quote request sent! 📦" }
+  ]
+}
+{% endschema %}

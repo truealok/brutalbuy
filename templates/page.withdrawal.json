@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "bb-withdrawal",
+      "settings": {
+        "heading": "Withdrawal request form",
+        "note": "💡 Items must be unused with original tags. Refunds are processed within 5 business days of pickup. Bulk and custom-printed orders are non-returnable unless defective.",
+        "form_success": "Request submitted — check your email 📬"
+      }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,66 @@
+{%- comment -%}
+  Real Shopify product rail.
+
+  Not included in templates/index.json by default — add it from the customizer
+  (Add section → Featured collection) once you've created products in Shopify
+  admin, then pick a collection. This is the migration path away from the demo
+  homepage rails in bb-product-tabs / bb-crowd-favorites.
+{%- endcomment -%}
+{%- assign col = collections[section.settings.collection] -%}
+{%- if col == blank and section.settings.collection == blank -%}
+  {%- assign col = collections.all -%}
+{%- endif -%}
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">{{ section.settings.heading | default: col.title }}</h2>
+        <p class="section-sub">{{ section.settings.subheading }}</p>
+      </div>
+      {%- if col.url -%}
+        <a class="section-link" href="{{ col.url }}">{{ section.settings.link_label }} →</a>
+      {%- endif -%}
+    </div>
+
+    {%- if col.products.size > 0 -%}
+      <div class="product-grid {% if section.settings.columns == 5 %}cols-5{% else %}cols-3{% endif %}">
+        {%- for product in col.products limit: section.settings.products_to_show -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="cart-empty" style="padding:50px 0">
+        <p style="color:var(--muted)">
+          No products in <b>{{ col.title }}</b> yet. Add products to this collection in
+          Shopify admin (Products → Collections) and they'll appear here automatically.
+        </p>
+        <a class="btn btn-primary" href="/pages/catalog" style="margin-top:18px">Browse the demo catalog instead</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "heading", "label": "Heading override", "info": "Leave blank to use the collection title." },
+    { "type": "inline_richtext", "id": "subheading", "label": "Subheading", "default": "Handpicked by athletes, sorted by hype." },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "View all" },
+    { "type": "range", "id": "products_to_show", "min": 4, "max": 24, "step": 2, "label": "Products to show", "default": 10 },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns",
+      "options": [
+        { "value": "3", "label": "3 columns" },
+        { "value": "5", "label": "5 columns" }
+      ],
+      "default": "5"
+    }
+  ],
+  "presets": [{ "name": "Featured collection" }]
+}
+{% endschema %}
